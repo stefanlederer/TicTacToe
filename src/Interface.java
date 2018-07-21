@@ -10,8 +10,9 @@ public class Interface {
 	static JFrame mainFrame;
 	static int frameWidth = 600;
 	static int frameHeight = 400;
+	static String returnStatement = "";
 
-	public static void createInterface() {
+	public static String createInterface() {
 		mainFrame = new JFrame();
 
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -29,13 +30,18 @@ public class Interface {
 		startGame.setFont(new Font("Arial", Font.PLAIN, 30));
 		startGame.setFocusPainted(false);
 		startGame.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		        startGame.setBackground(new java.awt.Color(220, 220, 220));
-		    }
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				startGame.setBackground(new java.awt.Color(220, 220, 220));
+			}
 
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		        startGame.setBackground(new java.awt.Color(226, 226, 226));
-		    }
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				startGame.setBackground(new java.awt.Color(226, 226, 226));
+			}
+		});
+		startGame.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
+				returnStatement = "startGame";
+			}
 		});
 		controlPanel.add(startGame);
 		JButton settings = new JButton("Settings");
@@ -46,13 +52,18 @@ public class Interface {
 		settings.setFont(new Font("Arial", Font.PLAIN, 30));
 		settings.setFocusPainted(false);
 		settings.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	settings.setBackground(new java.awt.Color(220, 220, 220));
-		    }
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				settings.setBackground(new java.awt.Color(220, 220, 220));
+			}
 
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	settings.setBackground(new java.awt.Color(226, 226, 226));
-		    }
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				settings.setBackground(new java.awt.Color(226, 226, 226));
+			}
+		});
+		settings.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
+				returnStatement = "settings";
+			}
 		});
 		controlPanel.add(settings);
 		JButton exitGame = new JButton("Exit");
@@ -63,18 +74,25 @@ public class Interface {
 		exitGame.setFont(new Font("Arial", Font.PLAIN, 30));
 		exitGame.setFocusPainted(false);
 		exitGame.addMouseListener(new java.awt.event.MouseAdapter() {
-		    public void mouseEntered(java.awt.event.MouseEvent evt) {
-		    	exitGame.setBackground(new java.awt.Color(220, 220, 220));
-		    }
+			public void mouseEntered(java.awt.event.MouseEvent evt) {
+				exitGame.setBackground(new java.awt.Color(220, 220, 220));
+			}
 
-		    public void mouseExited(java.awt.event.MouseEvent evt) {
-		    	exitGame.setBackground(new java.awt.Color(226, 226, 226));
-		    }
+			public void mouseExited(java.awt.event.MouseEvent evt) {
+				exitGame.setBackground(new java.awt.Color(226, 226, 226));
+			}
+		});
+		exitGame.addMouseListener(new java.awt.event.MouseAdapter() {
+			public void mouseClicked(java.awt.event.MouseEvent evt) {
+				System.exit(0);
+			}
 		});
 		controlPanel.add(exitGame);
 
 		mainFrame.pack();
 		mainFrame.setVisible(true);
+		return returnStatement;
+
 	}
 
 }
