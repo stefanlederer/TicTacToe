@@ -1,5 +1,6 @@
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.Toolkit;
 
@@ -8,6 +9,7 @@ import javax.swing.*;
 public class Interface {
 
 	static JFrame mainFrame;
+	static JPanel controlPanel;
 	static int frameWidth = 600;
 	static int frameHeight = 400;
 	static String returnStatement = "";
@@ -17,10 +19,11 @@ public class Interface {
 
 		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		mainFrame.setPreferredSize(new Dimension(frameWidth, frameHeight));
+		mainFrame.setResizable(false);
 		mainFrame.setLocation((int) (Toolkit.getDefaultToolkit().getScreenSize().getWidth() / 2 - frameWidth / 2),
 				(int) (Toolkit.getDefaultToolkit().getScreenSize().getHeight() / 2 - frameHeight / 2));
 
-		JPanel controlPanel = new JPanel();
+		controlPanel = new JPanel();
 		mainFrame.add(controlPanel, BorderLayout.CENTER);
 		JButton startGame = new JButton("Start");
 		startGame.setBorder(BorderFactory.createEmptyBorder());
@@ -40,7 +43,7 @@ public class Interface {
 		});
 		startGame.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				returnStatement = "startGame";
+				startGamePanel();
 			}
 		});
 		controlPanel.add(startGame);
@@ -62,7 +65,7 @@ public class Interface {
 		});
 		settings.addMouseListener(new java.awt.event.MouseAdapter() {
 			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				returnStatement = "settings";
+				settingsPanel();
 			}
 		});
 		controlPanel.add(settings);
@@ -94,5 +97,43 @@ public class Interface {
 		return returnStatement;
 
 	}
+	
+	public static void settingsPanel() {
+		JPanel settingsPanel = new JPanel();
+		mainFrame.add(settingsPanel, BorderLayout.CENTER);
+		mainFrame.getContentPane().remove(controlPanel);
+		
+		JLabel playerOne = new JLabel("Player 1");
+		playerOne.setFont(new Font("Arial", Font.PLAIN, 15));
+		playerOne.setPreferredSize(new Dimension(frameWidth, frameHeight / 10 ));
+		playerOne.setHorizontalAlignment(SwingConstants.CENTER);
+		settingsPanel.add(playerOne);
+		JButton cross = new JButton("Cross");
+		settingsPanel.add(cross);
+		JButton circle = new JButton("Circle");
+		settingsPanel.add(circle);
+		ButtonGroup playerStyle = new ButtonGroup();
+		JRadioButton singlePlayer = new JRadioButton("Singleplayer", true);
+		singlePlayer.setPreferredSize(new Dimension(frameWidth, frameHeight / 10 ));
+		singlePlayer.setHorizontalAlignment(SwingConstants.CENTER);
+		playerStyle.add(singlePlayer);
+		settingsPanel.add(singlePlayer);
+		JRadioButton multiPlayer = new JRadioButton("Multiplayer");
+		multiPlayer.setPreferredSize(new Dimension(frameWidth, frameHeight / 10 ));
+		multiPlayer.setHorizontalAlignment(SwingConstants.CENTER);
+		playerStyle.add(multiPlayer);
+		settingsPanel.add(multiPlayer);
+		
+		if(singlePlayer.isSelected() == true)
+		
+		mainFrame.repaint();
+		mainFrame.validate();
+		mainFrame.pack();
+		
+	}
+	
+	public static void startGamePanel() {
+		
+	};
 
 }
